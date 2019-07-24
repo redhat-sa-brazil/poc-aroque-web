@@ -1,0 +1,31 @@
+---
+- hosts: web
+  remote_user: root
+
+  tasks:
+    - name: Enabling http traffic
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Enabling ssh port
+      firewalld:
+        port: 22/tcp
+        permanent: yes
+        state: enabled
+
+    - name: Installing apache
+      yum:
+        name: httpd
+        state: latest
+        update_cache: yes
+
+    - name: Placing webpage at project root
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        owner: manutencao
+        group: root
+        mode: 0644
