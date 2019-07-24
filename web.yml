@@ -29,3 +29,11 @@
         owner: manutencao
         group: root
         mode: 0644
+
+    - name: Placing image at project root
+      copy:
+        src: redhat.png
+        dest: /var/www/html/redhat.png
+        owner: manutencao
+        group: root
+        mode: 0644
